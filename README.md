@@ -1,2 +1,3 @@
-# random-name-generator
-Generator of random but real names for testing
+# randomname
+
+A library to generate random but real names for testing
