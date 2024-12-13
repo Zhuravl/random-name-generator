@@ -3,15 +3,35 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <groupId>io.github.zhuravl</groupId>
     <artifactId>randomname</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
-
     <name>Random Name</name>
     <description>A library to generate random but real names for testing.</description>
     <url>https://zhuravl.github.io/randomname</url>
+
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>https://mit-license.org</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <id>Zhuravl</id>
+            <name>Illia Zhuravskyi</name>
+            <email>zhuravskyi.illia@gmail.com</email>
+        </developer>
+    </developers>
+
+    <scm>
+        <url>https://github.com/zhuravl/randomname</url>
+        <connection>scm:git:git://github.com/zhuravl/randomname.git</connection>
+        <developerConnection>scm:git:ssh://github.com/zhuravl/randomname.git</developerConnection>
+    </scm>
 
     <properties>
         <testng.version>7.8.0</testng.version>
@@ -52,6 +72,5 @@
                 </dependencies>
             </plugin>
         </plugins>
-
     </build>
 </project>

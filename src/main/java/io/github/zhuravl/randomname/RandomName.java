@@ -20,109 +20,90 @@ public class RandomName {
     private static final Random RANDOM = new Random();
 
     /**
-     * Generates a random first name.
+     * Generates a random name in the random available language and random gender based on the name parts.
      *
-     * @param language the language of the name
-     * @param gender   the gender of the name
-     * @return a random first name
+     * @param nameParts the name parts to use
+     * @return a random name, based on the given name parts (or 'last first' name, by default)
      */
-    public static String getFirstName(Language language, Gender gender) {
-        return getRandomName(language, gender, NamePart.FIRST);
+    public static String getName(NamePart... nameParts) {
+        return getName(getRandomEnum(Language.class), getRandomEnum(Gender.class), nameParts);
     }
 
     /**
-     * Generates a random last name.
+     * Generates a random name with random gender based on the given parameters.
      *
-     * @param language the language of the name
-     * @param gender   the gender of the name
-     * @return a random last name
+     * @param language the language to use
+     * @param nameParts the name parts to use
+     * @return a random name, based on the given parameters
      */
-    public static String getLastName(Language language, Gender gender) {
-        return getRandomName(language, gender, NamePart.LAST);
+    public static String getName(Language language, NamePart... nameParts) {
+        return getName(language, getRandomEnum(Gender.class), nameParts);
     }
 
     /**
-     * Generates a random middle name.
+     * Generates a random name in the random available language based on the given parameters.
      *
-     * @param language the language of the name
-     * @param gender   the gender of the name
-     * @return a random middle name
+     * @param gender   the gender to use
+     * @param nameParts the name parts to use
+     * @return a random name, based on the given parameters
      */
-    public static String getMiddleName(Language language, Gender gender) {
-        return getRandomName(language, gender, NamePart.MIDDLE);
-    }
-
-    /**
-     * Generates a full name (first, middle, and last name).
-     *
-     * @param language the language of the name
-     * @param gender   the gender of the name
-     * @return a random full name
-     */
-    public static String getFullName(Language language, Gender gender) {
-        return getFirstName(language, gender) + " " +
-                getMiddleName(language, gender) + " " +
-                getLastName(language, gender);
-    }
-
-    /**
-     * Generates a reversed full name (last, middle, and first name - cyrillic languages style).
-     *
-     * @param language the language of the name
-     * @param gender   the gender of the name
-     * @return a random full name
-     */
-    public static String getFullNameReversed(Language language, Gender gender) {
-        return getLastName(language, gender) + " " +
-                getFirstName(language, gender) + " " +
-                getMiddleName(language, gender);
-    }
-
-    /**
-     * Generates a name with first and last name.
-     *
-     * @param language the language of the name
-     * @param gender   the gender of the name
-     * @return a random first and last name
-     */
-    public static String getFirstLastName(Language language, Gender gender) {
-        return getFirstName(language, gender) + " " + getLastName(language, gender);
-    }
-
-    /**
-     * Generates a name with last and first name.
-     *
-     * @param language the language of the name
-     * @param gender   the gender of the name
-     * @return a random last and first name
-     */
-    public static String getLastFirstName(Language language, Gender gender) {
-        return getLastName(language, gender) + " " + getFirstName(language, gender);
+    public static String getName(Gender gender, NamePart... nameParts) {
+        return getName(getRandomEnum(Language.class), gender, nameParts);
     }
 
     /**
      * Generates a random name based on the given parameters.
      *
-     * @param language the language of the name
-     * @param gender   the gender of the name
-     * @param namePart the name part of the name
-     * @return a random name
+     * @param language the language to use
+     * @param gender   the gender to use
+     * @param nameParts the name parts to use
+     * @return a random name, based on the given parameters
      */
-    private static String getRandomName(Language language, Gender gender, NamePart namePart) {
-        validateParameters(language, gender, namePart);
+    public static String getName(Language language, Gender gender, NamePart... nameParts) {
+        NamePart[] finalNameParts = normalizeNameParts(nameParts);
 
-        String fileName = generateFileName(language, gender, namePart);
+        validateParameters(language, gender, finalNameParts);
+
+        StringBuilder result = new StringBuilder();
 
         try {
-            int totalLines = countLines(fileName);
-            if (totalLines == 0) {
-                throw new IllegalStateException("The file '" + fileName + "' is empty!");
+            for (NamePart namePart : finalNameParts) {
+                String fileName = generateFileName(language, gender, namePart);
+                int totalLines = countLines(fileName);
+                if (totalLines == 0) {
+                    throw new IllegalStateException("The file '" + fileName + "' is empty!");
+                }
+                int randomLineNumber = RANDOM.nextInt(totalLines);
+                result.append(readLineAt(fileName, randomLineNumber)).append(" ");
             }
-            int randomLineNumber = RANDOM.nextInt(totalLines);
-            return readLineAt(fileName, randomLineNumber);
-        } catch (IOException e) {
-            throw new RuntimeException("Error generating name from file: " + fileName, e);
+        } catch (Exception e) {
+            throw new RuntimeException("Error is happened while generating a random name!", e);
         }
+        return result.toString().trim();
+    }
+
+    /**
+     * Returns random enum value
+     *
+     * @param clazz enum class to return instance from
+     * @param <T>   return class type
+     */
+    private static <T extends Enum<?>> T getRandomEnum(Class<T> clazz) {
+        int x = RANDOM.nextInt(clazz.getEnumConstants().length);
+        return clazz.getEnumConstants()[x];
+    }
+
+    /**
+     * Sets the default name parts if none are provided.
+     *
+     * @param nameParts the name parts
+     * @return the normalized name parts
+     */
+    private static NamePart[] normalizeNameParts(NamePart[] nameParts) {
+        if (nameParts.length == 0) {
+            return new NamePart[]{NamePart.LAST, NamePart.FIRST};
+        }
+        return nameParts;
     }
 
     /**
@@ -132,10 +113,11 @@ public class RandomName {
      * @param gender   the gender of the name
      * @param namePart the name part of the name
      */
-    private static void validateParameters(Language language, Gender gender, NamePart namePart) {
-        Objects.requireNonNull(language, "Language must not be null.");
-        Objects.requireNonNull(gender, "Gender must not be null.");
-        Objects.requireNonNull(namePart, "NamePart must not be null.");
+    private static void validateParameters(Language language, Gender gender, NamePart... namePart) {
+        Objects.requireNonNull(language, "Language must not be null!");
+        Objects.requireNonNull(gender, "Gender must not be null!");
+        Objects.requireNonNull(namePart, "NamePart must not be null!");
+        Objects.requireNonNull(namePart[0], "NamePart must have at least one element!");
     }
 
     /**

@@ -1,57 +1,77 @@
 # RandomName Generator
 
-This project provides a utility for generating random names based on language, gender, and name parts (first, middle,
-and last names). It can be used for generating realistic names in various formats for testing, randomization, or
-simulation purposes.
+[![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](https://example.com/build-status) [![Maven Central](https://img.shields.io/maven-central/v/io.github.zhuravl/randomname)](https://search.maven.org/artifact/io.github.zhuravl/randomname) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://mit-license.org/)
+
+A utility library for generating random names based on language, gender, and name parts. This library is designed to be
+lightweight and extensible for use in test data generation, simulations, or other applications requiring randomized
+names.
 
 ## Features
 
-- Generate a random **first name** based on language and gender.
-- Generate a random **last name** based on language and gender.
-- Generate a random **middle name** based on language and gender.
-- Generate a **full name** (first, middle, and last names).
-- Generate a **reversed full name** (last, middle, and first names, typically used in Cyrillic-style languages).
-- Generate a **first and last name** combination.
-- Generate a **last and first name** combination.
+- Generate random names with configurable:
+  - Language
+  - Gender
+  - Name parts (first, last, etc.)
+- Support for multiple languages and genders
+- Customizable file-based name data storage
 
-## Example Usage
+## Installation
 
-```java
-Language language = Language.ENGLISH;
-Gender gender = Gender.MALE;
+Add the following dependency to your `pom.xml`:
 
-String firstName = RandomName.getFirstName(language, gender);
-String lastName = RandomName.getLastName(language, gender);
-String fullName = RandomName.getFullName(language, gender);
-
-System.out.
-
-println("First Name: "+firstName);
-System.out.
-
-println("Last Name: "+lastName);
-System.out.
-
-println("Full Name: "+fullName);
+```xml
+<dependency>
+    <groupId>io.github.zhuravl</groupId>
+    <artifactId>randomname</artifactId>
+    <version>1.0.0</version>
+</dependency>
 ```
 
-## Requirements
+## Usage
 
-- Java 8 or later
-- The necessary name files (stored as `.txt` files) for each combination of language, gender, and name part should be
-  included in the resources folder.
+### Basic Name Generation
 
-## How it Works
+```java
+import io.github.zhuravl.randomname.RandomName;
+import io.github.zhuravl.randomname.enums.NamePart;
 
-The `RandomName` class provides various methods to generate random names by reading from pre-defined text files. These
-files contain lists of names for different languages and genders, with each name part (first, middle, last) stored in
-separate files. The class randomly selects a name from the appropriate file based on the parameters provided.
+public class Main {
+    public static void main(String[] args) {
+        String randomName = RandomName.getName();
+        System.out.println("Generated Name: " + randomName);
+    }
+}
+```
+
+### Advanced Configuration
+
+```java
+import io.github.zhuravl.randomname.RandomName;
+import io.github.zhuravl.randomname.enums.Gender;
+import io.github.zhuravl.randomname.enums.Language;
+import io.github.zhuravl.randomname.enums.NamePart;
+
+public class Main {
+    public static void main(String[] args) {
+        String customName = RandomName.getName(Language.ENGLISH, Gender.MALE, NamePart.FIRST, NamePart.LAST);
+        System.out.println("Custom Generated Name: " + customName);
+    }
+}
+```
 
 ## Contributing
 
-If you wish to contribute to the project, feel free to submit a pull request. Please make sure to add any missing name
-files or enhance the code with new features as needed.
+Contributions are welcome! Please follow these steps:
+
+1. Fork the repository;
+2. Create a feature branch;
+3. Commit your changes;
+4. Create a pull request.
 
 ## License
 
-This project is licensed under the MIT License. See the LICENSE file for more details.
+This project is licensed under the [MIT License](https://mit-license.org).
+
+---
+
+Happy coding!
