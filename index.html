@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Random Name</title>
-    <link rel="icon" href="src/main/resources/images/favicon.png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link href="src/main/resources/images/favicon.png" rel="icon">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" rel="stylesheet">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -57,13 +57,13 @@
     <p>A library to generate random but real names for testing based on language, gender, and name parts.</p>
     <p>
         <a href="https://example.com/build-status" target="_blank">
-            <img src="https://img.shields.io/badge/build-passing-brightgreen" alt="Build Status">
+            <img alt="Build Status" src="https://img.shields.io/badge/build-passing-brightgreen">
         </a>
         <a href="https://search.maven.org/artifact/io.github.zhuravl/randomname" target="_blank">
-            <img src="https://img.shields.io/maven-central/v/io.github.zhuravl/randomname" alt="Maven Central">
+            <img alt="Maven Central" src="https://img.shields.io/maven-central/v/io.github.zhuravl/randomname">
         </a>
         <a href="https://mit-license.org" target="_blank">
-            <img src="https://img.shields.io/badge/license-MIT-blue" alt="MIT License">
+            <img alt="MIT License" src="https://img.shields.io/badge/license-MIT-blue">
         </a>
     </p>
 </header>
@@ -104,6 +104,10 @@ public class Main {
         System.out.println("Generated Name: " + randomName);
     }
 }</code></pre>
+        <div>
+            Result output:
+            <pre><code>Generated Name: Гордієнко Ірина</code></pre>
+        </div>
         <h3>Advanced Configuration</h3>
         <pre><code>import io.github.zhuravl.randomname.RandomName;
 import io.github.zhuravl.randomname.enums.Gender;
@@ -116,6 +120,10 @@ public class Main {
         System.out.println("Custom Generated Name: " + customName);
     }
 }</code></pre>
+        <div>
+            Result output:
+            <pre><code>Generated Name: John Smith</code></pre>
+        </div>
     </section>
     <section>
         <h2>Contributing</h2>

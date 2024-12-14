@@ -44,6 +44,12 @@ public class Main {
 }
 ```
 
+Result output:
+
+```
+Generated Name: Гордієнко Ірина
+```
+
 ### Advanced Configuration
 
 ```java
@@ -58,6 +64,12 @@ public class Main {
         System.out.println("Custom Generated Name: " + customName);
     }
 }
+```
+
+Result output:
+
+```
+Generated Name: John Smith
 ```
 
 ## Contributing
