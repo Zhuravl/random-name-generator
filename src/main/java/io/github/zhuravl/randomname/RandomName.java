@@ -14,10 +14,18 @@ import java.util.Random;
 
 /**
  * Utility class for generating random names based on language, gender, and name part.
+ * This class is not meant to be instantiated.
  */
 public class RandomName {
 
     private static final Random RANDOM = new Random();
+
+    /**
+     * Private constructor to prevent instantiation.
+     */
+    private RandomName() {
+        throw new UnsupportedOperationException("This is a utility class and cannot be instantiated");
+    }
 
     /**
      * Generates a random name in the random available language and random gender based on the name parts.

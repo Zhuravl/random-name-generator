@@ -1,9 +1,17 @@
 package io.github.zhuravl.randomname.enums;
 
 /**
- * The gender of the name.
+ * Enum representing the genders for the name to be generated.
  */
 public enum Gender {
+
+    /**
+     * Represents male gender.
+     */
     MALE,
-    FEMALE;
+
+    /**
+     * Represents female gender.
+     */
+    FEMALE
 }
