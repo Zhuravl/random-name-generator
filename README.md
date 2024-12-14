@@ -1,8 +1,9 @@
-# RandomName Generator
+# Random Name
 
 [![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](https://example.com/build-status) [![Maven Central](https://img.shields.io/maven-central/v/io.github.zhuravl/randomname)](https://search.maven.org/artifact/io.github.zhuravl/randomname) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://mit-license.org/)
 
-A utility library for generating random names based on language, gender, and name parts. This library is designed to be
+A utility library for generating random but real names based on language, gender, and name parts. This library is
+designed to be
 lightweight and extensible for use in test data generation, simulations, or other applications requiring randomized
 names.
 
@@ -74,4 +75,4 @@ This project is licensed under the [MIT License](https://mit-license.org).
 
 ---
 
-Happy coding!
+Happy testing!
