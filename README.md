@@ -33,43 +33,55 @@ Add the following dependency to your `pom.xml`:
 ### Basic Name Generation
 
 ```java
-import io.github.zhuravl.randomname.RandomName;
-import io.github.zhuravl.randomname.enums.NamePart;
-
 public class Main {
-    public static void main(String[] args) {
-        String randomName = RandomName.getName();
-        System.out.println("Generated Name: " + randomName);
+  public static void main(String[] args) {
+    System.out.println("Generated names:");
+    for (int i = 0; i < 5; i++) {
+      String randomName = RandomName.getName();
+      System.out.println(randomName);
     }
+  }
 }
 ```
 
 Result output:
 
 ```
-Generated Name: Гордієнко Ірина
+Generated names:
+Крикун Сюзанна
+Онищенко Тетяна
+Будяк Віра
+Perez Jacob
+Калиненко Катерина
 ```
 
 ### Advanced Configuration
 
 ```java
-import io.github.zhuravl.randomname.RandomName;
 import io.github.zhuravl.randomname.enums.Gender;
 import io.github.zhuravl.randomname.enums.Language;
 import io.github.zhuravl.randomname.enums.NamePart;
 
 public class Main {
-    public static void main(String[] args) {
-        String customName = RandomName.getName(Language.ENGLISH, Gender.MALE, NamePart.FIRST, NamePart.LAST);
-        System.out.println("Custom Generated Name: " + customName);
+  public static void main(String[] args) {
+    System.out.println("Custom generated names:");
+    for (int i = 0; i < 5; i++) {
+      String customName = RandomName.getName(Language.ENG, Gender.MALE, NamePart.FIRST, NamePart.LAST);
+      System.out.println(customName);
     }
+  }
 }
 ```
 
 Result output:
 
 ```
-Generated Name: John Smith
+Custom generated names:
+Felix Diaz
+Charles Martinez
+Vincent Richardson
+Aaron Rogers
+Walter Campbell
 ```
 
 ## Contributing
