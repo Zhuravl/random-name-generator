@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>io.github.zhuravl</groupId>
     <artifactId>randomname</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <packaging>jar</packaging>
     <name>Random Name</name>
     <description>A library to generate random but real names for testing based on language, gender, and name parts.

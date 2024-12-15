@@ -24,10 +24,12 @@ Add the following dependency to your `pom.xml`:
 <dependency>
     <groupId>io.github.zhuravl</groupId>
     <artifactId>randomname</artifactId>
-    <version>1.0.0</version>
+  <version>1.0.1</version>
 </dependency>
 ```
 
+Check out the '[Maven Central / randomname](https://central.sonatype.com/artifact/io.github.zhuravl/randomname)'
+repository to get the latest version.
 ## Usage
 
 ### Basic Name Generation
